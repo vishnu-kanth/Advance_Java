@@ -1,42 +1,36 @@
 package com.lpu;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-class User {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String  username;
+    @Column(name = "name", length = 100, nullable = false)
+    private String name;
 
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    @Column(name = "salary", nullable = false, precision = 10)
+    private double salary;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    private Address address;
 
-    @Column(name = "role")
-    private String role;
 
-    // Default Constructor (Required by Hibernate)
     public User() {
     }
 
-    // Parameterized Constructor
-    public User(String username, String email, String password, String role) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    public User(int id, String name, double salary,Address address) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.address=address;
     }
-
-    // Getters and Setters
 
     public int getId() {
         return id;
@@ -46,39 +40,32 @@ class User {
         this.id = id;
     }
 
-
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    public String getEmail() {
-        return email;
+    public double getSalary() {
+        return salary;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
-
-    public String getPassword() {
-        return password;
+    public Address getAddress(){
+        return this.address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }
