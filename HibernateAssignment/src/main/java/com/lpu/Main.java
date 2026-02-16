@@ -20,7 +20,7 @@ public class Main {
 
         try {
 
-            // Create
+
             session.beginTransaction();
 
             Product product = new Product();
@@ -39,7 +39,7 @@ public class Main {
 
 
 
-            // Read
+
             session.beginTransaction();
 
             List<Product> products = session.createQuery("from Product", Product.class).list();
@@ -52,7 +52,7 @@ public class Main {
 
 
 
-            //Update
+
             session.beginTransaction();
 
             Product updateProduct = session.get(Product.class, product.getId());
@@ -62,7 +62,7 @@ public class Main {
             System.out.println("Product Updated!");
 
 
-            //Delete
+
             session.beginTransaction();
 
             Product deleteProduct = session.get(Product.class, product.getId());
